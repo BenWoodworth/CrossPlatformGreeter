@@ -1,8 +1,13 @@
+apply plugin: 'kotlin'
+
 group 'net.benwoodworth'
 version '1.0'
 
+ext.bukkit_version = '1.10.2-R0.1-SNAPSHOT'
+ext.sponge_version = '4.0.3'
+
 buildscript {
-    ext.kotlin_version = '1.0.4'
+    ext.kotlin_version = '1.0.5-2'
 
     repositories {
         mavenCentral()
@@ -12,27 +17,16 @@ buildscript {
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'kotlin'
-
-sourceCompatibility = 1.5
-
 repositories {
     mavenCentral()
-    jcenter()
 
-    maven {
-        url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
-    }
-
-    maven {
-        url 'http://repo.spongepowered.org/maven'
-    }
+    maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url 'http://repo.spongepowered.org/maven' }
 }
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    compile "org.bukkit:bukkit:1.10.2-R0.1-SNAPSHOT"
-    compile "org.spongepowered:spongeapi:4.0.3"
+    compile "org.bukkit:bukkit:$bukkit_version"
+    compile "org.spongepowered:spongeapi:$sponge_version"
 }
