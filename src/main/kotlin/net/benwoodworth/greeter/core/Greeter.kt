@@ -2,10 +2,13 @@ package net.benwoodworth.greeter.core
 
 /**
  * The core class of the Greeter plugin.
- *
- * @param joinListener The join event listener.
  */
-class Greeter(val joinListener: JoinListener) {
+interface Greeter {
+
+    /**
+     * The join event listener.
+     */
+    val joinListener: JoinListener
 
     /**
      * Load the Greeter plugin.
