@@ -3,7 +3,7 @@ package net.benwoodworth.greeter.sponge
 import net.benwoodworth.greeter.core.Greeter
 import org.spongepowered.api.event.Listener
 import org.spongepowered.api.plugin.Plugin
-import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
+import org.spongepowered.api.event.game.state.GamePreInitializationEvent
 
 /**
  * The Sponge implementation of the Greeter.
@@ -15,10 +15,11 @@ import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
         authors = arrayOf("Kepler_"))
 class SpongeGreeter {
 
-    val greeter: Greeter by lazy {
-        Greeter(SpongeJoinListener(this))
-    }
-
     @Listener
-    fun onPreInit(event: GamePreInitializationEvent) = greeter.load()
+    fun onPreInit(event: GamePreInitializationEvent) {
+        Greeter.loadGreeter(Greeter(
+                joinListener = SpongeJoinListener(this),
+                logger = SpongeLogger()
+        ))
+    }
 }

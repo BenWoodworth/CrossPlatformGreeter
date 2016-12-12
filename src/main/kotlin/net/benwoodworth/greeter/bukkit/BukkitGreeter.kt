@@ -8,9 +8,10 @@ import org.bukkit.plugin.java.JavaPlugin
  */
 class BukkitGreeter : JavaPlugin() {
 
-    val greeter: Greeter by lazy {
-        Greeter(BukkitJoinListener(this))
+    override fun onEnable() {
+        Greeter.loadGreeter(Greeter(
+                joinListener = BukkitJoinListener(this),
+                logger = BukkitLogger(this)
+        ))
     }
-
-    override fun onEnable() = greeter.load()
 }

@@ -2,27 +2,45 @@ package net.benwoodworth.greeter.core
 
 /**
  * The core class of the Greeter plugin.
+ *
+ * @param joinListener The join event listener.
+ * @param logger The console logger.
  */
-interface Greeter {
+class Greeter(
+        val joinListener: JoinListener,
+        val logger: Logger
+) {
 
-    /**
-     * The join event listener.
-     */
-    val joinListener: JoinListener
+    companion object {
+        private var loaded = false
+
+        @JvmStatic
+        lateinit var instance: Greeter
+            private set
+
+        @JvmStatic
+        fun loadGreeter(greeter: Greeter) {
+            if (loaded) throw IllegalStateException("Greeter can only be initialized once.")
+            loaded = true
+
+            instance = greeter
+            greeter.loadPlugin()
+        }
+    }
 
     /**
      * Load the Greeter plugin.
      */
-    fun load() {
+    private fun loadPlugin() {
         joinListener += { joinEventHandler(it) }
 
-        System.out.println("Greeter loaded!")
+        logger.log("Hello Server!")
     }
 
     /**
      * Handles players logging in.
      */
-    fun joinEventHandler(joinEvent: JoinEvent) {
+    private fun joinEventHandler(joinEvent: JoinEvent) {
         val player = joinEvent.player
         val name = player.name
 
