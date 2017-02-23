@@ -16,7 +16,7 @@ class Greeter @Inject constructor(
     /**
      * Load the Greeter plugin.
      */
-    private fun loadPlugin() {
+    public fun loadPlugin() {
         joinListener += { joinEventHandler(it) }
 
         logger.log("Hello Server!")
