@@ -3,7 +3,6 @@ version "1.1"
 
 apply plugin: "kotlin"
 apply plugin: "com.github.johnrengelman.shadow"
-apply plugin: "idea"
 
 buildscript {
     ext {
@@ -44,5 +43,4 @@ dependencies {
 
     compile "com.google.dagger:dagger:$version_dagger"
     kapt "com.google.dagger:dagger-compiler:$version_dagger"
-    //provided "javax.annotation:jsr250-api:$version_jsr250"
 }

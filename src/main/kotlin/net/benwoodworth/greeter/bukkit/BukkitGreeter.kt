@@ -2,8 +2,12 @@ package net.benwoodworth.greeter.bukkit
 
 import dagger.Component
 import dagger.Module
+import dagger.Provides
 import net.benwoodworth.greeter.core.Greeter
+import net.benwoodworth.greeter.core.JoinListener
+import net.benwoodworth.greeter.core.Logger
 import org.bukkit.plugin.java.JavaPlugin
+import javax.inject.Singleton
 
 /**
  * The Bukkit implementation of the Greeter.
@@ -14,6 +18,7 @@ class BukkitGreeter : JavaPlugin() {
 
     }
 
+    @Singleton
     @Component(modules = arrayOf(BukkitGreeterModule::class))
     interface BukkitGreeterComponent {
 
@@ -21,7 +26,12 @@ class BukkitGreeter : JavaPlugin() {
     }
 
     @Module
-    class BukkitGreeterModule {
+    inner class BukkitGreeterModule {
 
+        @Provides @Singleton
+        fun joinListener(): JoinListener = BukkitJoinListener(this@BukkitGreeter)
+
+        @Provides @Singleton
+        fun logger(): Logger = BukkitLogger(this@BukkitGreeter)
     }
 }
