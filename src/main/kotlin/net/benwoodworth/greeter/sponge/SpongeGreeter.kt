@@ -17,9 +17,6 @@ class SpongeGreeter {
 
     @Listener
     fun onPreInit(event: GamePreInitializationEvent) {
-        Greeter.loadGreeter(Greeter(
-                joinListener = SpongeJoinListener(this),
-                logger = SpongeLogger()
-        ))
+
     }
 }

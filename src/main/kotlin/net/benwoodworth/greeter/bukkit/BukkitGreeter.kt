@@ -1,5 +1,7 @@
 package net.benwoodworth.greeter.bukkit
 
+import dagger.Component
+import dagger.Module
 import net.benwoodworth.greeter.core.Greeter
 import org.bukkit.plugin.java.JavaPlugin
 
@@ -9,9 +11,17 @@ import org.bukkit.plugin.java.JavaPlugin
 class BukkitGreeter : JavaPlugin() {
 
     override fun onEnable() {
-        Greeter.loadGreeter(Greeter(
-                joinListener = BukkitJoinListener(this),
-                logger = BukkitLogger(this)
-        ))
+
+    }
+
+    @Component(modules = arrayOf(BukkitGreeterModule::class))
+    interface BukkitGreeterComponent {
+
+        fun plugin(): Greeter
+    }
+
+    @Module
+    class BukkitGreeterModule {
+
     }
 }

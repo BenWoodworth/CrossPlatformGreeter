@@ -1,32 +1,17 @@
 package net.benwoodworth.greeter.core
 
+import javax.inject.Inject
+
 /**
  * The core class of the Greeter plugin.
  *
  * @param joinListener The join event listener.
  * @param logger The console logger.
  */
-class Greeter(
+class Greeter @Inject constructor(
         val joinListener: JoinListener,
         val logger: Logger
 ) {
-
-    companion object {
-        private var loaded = false
-
-        @JvmStatic
-        lateinit var instance: Greeter
-            private set
-
-        @JvmStatic
-        fun loadGreeter(greeter: Greeter) {
-            if (loaded) throw IllegalStateException("Greeter can only be initialized once.")
-            loaded = true
-
-            instance = greeter
-            greeter.loadPlugin()
-        }
-    }
 
     /**
      * Load the Greeter plugin.
