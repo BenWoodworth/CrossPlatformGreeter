@@ -16,7 +16,7 @@ class BukkitGreeter : JavaPlugin() {
 
     override fun onEnable() {
         val component = DaggerBukkitGreeter_BukkitGreeterComponent.builder().build()
-        val plugin: Greeter = component.plugin()
+        val plugin = component.plugin()
         plugin.loadPlugin()
     }
 
