@@ -5,14 +5,12 @@ apply plugin: "kotlin"
 
 buildscript {
     ext {
-        version_kotlin = "1.0.6";
-        version_shadow = "1.2.4"
-
+        version_kotlin = "1.1.0-rc-91";
         version_bukkit = "1.10.2-R0.1-SNAPSHOT"
         version_sponge = "4.0.3"
-
         version_dagger = "2.9"
         version_jsr250 = "1.0"
+        version_inject = "1"
     }
 
     repositories {
@@ -32,32 +30,20 @@ repositories {
     maven { url "http://repo.spongepowered.org/maven" }
 }
 
-compileKotlin {
-//    sourceCompatibility = JavaVersion.VERSION_1_8
-//    targetCompatibility = JavaVersion.VERSION_1_8
-
-    kotlinOptions {
-        includeRuntime = true
-        noStdlib = false
-    }
-}
-
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$version_kotlin"
 
     compile "org.bukkit:bukkit:$version_bukkit"
     compile "org.spongepowered:spongeapi:$version_sponge"
 
+    compile "javax.annotation:jsr250-api:$version_jsr250"
+    compile "javax.inject:javax.inject:$version_inject"
     compile "com.google.dagger:dagger:$version_dagger"
     kapt "com.google.dagger:dagger-compiler:$version_dagger"
 }
 
-kapt {
-    // Generate Dagger 2 classes
-    generateStubs = true
-}
-
+// Generate Dagger 2 classes, and include them in the java source set
+kapt.generateStubs = true
 sourceSets {
-    // Use generated Dagger 2 source classes
     main.java.srcDirs += "$buildDir/generated/source/kapt/main"
 }
