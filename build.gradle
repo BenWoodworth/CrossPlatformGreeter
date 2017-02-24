@@ -43,7 +43,5 @@ dependencies {
 }
 
 // Generate Dagger 2 classes, and include them in the java source set
+sourceSets.main.java.srcDirs += "$buildDir/generated/source/kapt/main"
 kapt.generateStubs = true
-sourceSets {
-    main.java.srcDirs += "$buildDir/generated/source/kapt/main"
-}
