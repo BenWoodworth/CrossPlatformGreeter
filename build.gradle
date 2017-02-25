@@ -5,7 +5,7 @@ apply plugin: "kotlin"
 
 buildscript {
     ext {
-        version_kotlin = "1.1.0-rc-91";
+        version_kotlin = "1.1.0-rc-91"
         version_bukkit = "1.10.2-R0.1-SNAPSHOT"
         version_sponge = "4.0.3"
         version_dagger = "2.9"
@@ -31,6 +31,7 @@ repositories {
 }
 
 dependencies {
+    compile "org.jetbrains.kotlin:kotlin-runtime:$version_kotlin"
     compile "org.jetbrains.kotlin:kotlin-stdlib:$version_kotlin"
 
     compile "org.bukkit:bukkit:$version_bukkit"
@@ -45,3 +46,16 @@ dependencies {
 // Generate Dagger 2 classes, and include them in the java source set
 sourceSets.main.java.srcDirs += "$buildDir/generated/source/kapt/main"
 kapt.generateStubs = true
+
+jar {
+    from {
+        String[] include = [
+            "kotlin-runtime-${version_kotlin}.jar",
+            "kotlin-stdlib-${version_kotlin}.jar"
+        ]
+
+        configurations.compile
+                .findAll { include.contains(it.name) }
+                .collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
