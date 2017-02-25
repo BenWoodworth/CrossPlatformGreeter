@@ -47,15 +47,13 @@ dependencies {
 sourceSets.main.java.srcDirs += "$buildDir/generated/source/kapt/main"
 kapt.generateStubs = true
 
-jar {
-    from {
-        String[] include = [
-            "kotlin-runtime-${version_kotlin}.jar",
-            "kotlin-stdlib-${version_kotlin}.jar"
-        ]
+jar.from {
+    String[] include = [
+        "kotlin-runtime-${version_kotlin}.jar",
+        "kotlin-stdlib-${version_kotlin}.jar"
+    ]
 
-        configurations.compile
-                .findAll { include.contains(it.name) }
-                .collect { it.isDirectory() ? it : zipTree(it) }
-    }
+    configurations.compile
+            .findAll { include.contains(it.name) }
+            .collect { it.isDirectory() ? it : zipTree(it) }
 }
