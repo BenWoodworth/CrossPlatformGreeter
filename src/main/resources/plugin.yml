@@ -1,9 +1,8 @@
-name: CrossPlatformGreeter
-author: Kepler_
-version: 1.0
+name: ${plugin_name}
+author: ${plugin_author}
+version: ${plugin_version}
+description: ${plugin_description}
 
 prefix: Greeter
-
-description: A cross-platform server greeter.
 
 main: net.benwoodworth.greeter.bukkit.BukkitGreeter
