@@ -7,7 +7,7 @@ def plugin_version = version
 def plugin_author = "Kepler_"
 
 apply plugin: "kotlin"
-//apply plugin: "org.spongepowered.plugin"
+apply plugin: "org.spongepowered.plugin"
 
 buildscript {
     ext {
