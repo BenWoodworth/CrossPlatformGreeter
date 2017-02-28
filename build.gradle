@@ -17,7 +17,7 @@ buildscript {
         version_spongegradle = "0.8.1"
         version_dagger = "2.9"
         version_jsr250 = "1.0"
-        version_inject = "1"
+        version_javax_inject = "1"
     }
 
     repositories {
@@ -47,7 +47,7 @@ dependencies {
     compile "org.spongepowered:spongeapi:$version_sponge"
 
     compile "javax.annotation:jsr250-api:$version_jsr250"
-    compile "javax.inject:javax.inject:$version_inject"
+    compile "javax.inject:javax.inject:$version_javax_inject"
     compile "com.google.dagger:dagger:$version_dagger"
     kapt "com.google.dagger:dagger-compiler:$version_dagger"
 }
@@ -70,7 +70,9 @@ kapt.generateStubs = true
 jar.from {
     String[] includeInJar = [
             "kotlin-runtime-${version_kotlin}.jar",
-            "kotlin-stdlib-${version_kotlin}.jar"
+            "kotlin-stdlib-${version_kotlin}.jar",
+            "dagger-${version_dagger}.jar",
+            "javax.inject-${version_javax_inject}.jar"
     ]
 
     configurations.compile

@@ -23,7 +23,9 @@ class SpongeGreeter {
 
     @Listener
     fun onPreInit(event: GamePreInitializationEvent) {
-        val component = DaggerSpongeGreeter_SpongeGreeterComponent.builder().build()
+        val component = DaggerSpongeGreeter_SpongeGreeterComponent.builder()
+                .spongeGreeterModule(SpongeGreeterModule())
+                .build()
         val plugin = component.plugin()
         plugin.loadPlugin()
     }

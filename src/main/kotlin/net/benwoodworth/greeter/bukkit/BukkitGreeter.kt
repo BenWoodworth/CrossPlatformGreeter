@@ -15,7 +15,9 @@ import javax.inject.Singleton
 class BukkitGreeter : JavaPlugin() {
 
     override fun onEnable() {
-        val component = DaggerBukkitGreeter_BukkitGreeterComponent.builder().build()
+        val component = DaggerBukkitGreeter_BukkitGreeterComponent.builder()
+                .bukkitGreeterModule(BukkitGreeterModule())
+                .build()
         val plugin = component.plugin()
         plugin.loadPlugin()
     }
