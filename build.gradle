@@ -11,7 +11,7 @@ apply plugin: "kotlin"
 
 buildscript {
     ext {
-        version_kotlin = "1.1.0-rc-91"
+        version_kotlin = "1.1.0"
         version_bukkit = "1.10.2-R0.1-SNAPSHOT"
         version_sponge = "4.0.3"
         version_spongegradle = "0.8.1"
@@ -23,7 +23,6 @@ buildscript {
     repositories {
         mavenCentral()
         maven { url "https://plugins.gradle.org/m2/" }
-        maven { url "http://dl.bintray.com/kotlin/kotlin-eap-1.1" }
     }
 
     dependencies {
@@ -34,7 +33,6 @@ buildscript {
 
 repositories {
     mavenCentral()
-    maven { url "http://dl.bintray.com/kotlin/kotlin-eap-1.1" }
     maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" }
     maven { url "http://repo.spongepowered.org/maven" }
 }
